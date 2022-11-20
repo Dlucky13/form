@@ -1,0 +1,64 @@
+<mat-card>
+  <mat-card-content>
+    <div [formGroup]="formGroup">
+      <ng-container *ngIf="firstTab">
+        <mat-form-field appearance="fill">
+          <input matInput formControlName="field1">
+        </mat-form-field>
+        <div>
+          <mat-icon (click)="addFormControl()">add</mat-icon>
+          <div
+            *ngFor="let fCtrl of getGroupControls() as controls; index as i"
+            class="groupInput"
+          >
+            <mat-form-field appearance="fill">
+              <input matInput [formControl]="fCtrl">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Показать еще одно поле?</mat-label>
+          <mat-select formControlName="list" #mySelect>
+            <mat-option
+              *ngFor="let option of selectOptions"
+              [value]="option.value"
+            >
+              {{option.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="mySelect.value">
+          <input matInput formControlName="secretField">
+        </mat-form-field>
+        <button
+          mat-raised-button color="primary"
+          (click)="showFormData()"
+        >Показать данные формы
+        </button>
+        <div *ngIf="submitted">
+          {{formGroup.value | json}}
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!firstTab">
+        <mat-form-field appearance="fill">
+          <mat-label>Введите: "{{checkedValue}}"</mat-label>
+          <input #checkField matInput formControlName="field2">
+        </mat-form-field>
+        <h1 *ngIf="checkField.value === checkedValue">Уведомление</h1>
+      </ng-container>
+
+    </div>
+
+
+
+
+
+  </mat-card-content>
+</mat-card>
+
+
+
+
+

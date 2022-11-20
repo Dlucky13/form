@@ -1,0 +1,19 @@
+.mat-card {
+  display: flex;
+  max-width: 400px;
+  margin: 20px;
+  padding-left: 50px;
+}
+
+.mat-icon {
+  margin-left: -30px;
+  margin-right: 5px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.groupInput {
+  display: block;
+}
